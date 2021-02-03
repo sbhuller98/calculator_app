@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script>
+    var curr_input = '';
+    var answer = ''
+    
+    document.addEventListener('DOMContentLoaded', function() {
+
+    });
+    function updateScreen(input) {
+        document.getElementById('screen_text').innerHTML = input;
+    }
+    function update_calc(num) {
+        curr_input = curr_input.concat(num)
+        updateScreen(curr_input)
+    }
+    function calculate() {
+        answer = eval(curr_input)
+        updateScreen(answer)
+
+    }
+
+
+
+
+</script>
+<style>
+     .arithmetic_numbers {
+        width: 80px;
+        height: 50px;
+        margin: 5px;
+        position: relative;
+        border-width: 4px;
+        border-color: black;
+     }   
+     
+     .function_buttons {
+        width: 65px;
+        height: 40px;
+        margin: 5px;
+        border-width: 2px;
+        border-color: black;
+        
+     }  
+      body
+    {
+        width:80%;
+        margin-left:30%;
+        margin-right:auto;
+        margin-top: 10%;
+        
+    }
+    #screen {
+        background-color: #343a40;
+        width: 418px;
+        border-width: 5px;
+        border-color: black;
+        text-align: right;
+        border-style: double;
+    }
+    #screen_text {
+        color: white;
+        margin-right: 10px;
+    }
+
+</style>
+</head>
+<body>
+        <div id='screen'>
+            <h1 class='display-4' id='screen_text'>Welcome!</h1>
+        </div>
+        <div>
+            <div class='row'>
+                <button type="button" class="function_buttons btn btn-primary" >2ndF</button>
+                <button type="button" class="btn btn-primary function_buttons">DRG</button>
+                <button type="button" class="btn btn-primary function_buttons">Exp</button>
+                <button type="button" class="btn btn-primary function_buttons">a b/c</button>
+                <button type="button" class="btn btn-primary function_buttons">DEL</button>
+                <button type="button" class="btn btn-primary function_buttons">On/C</button>
+            </div>
+            <div class='row'>
+                <button type="button" class="btn btn-primary function_buttons">hyp</button>
+                <button type="button" class="btn btn-primary function_buttons">sin</button>
+                <button type="button" class="btn btn-primary function_buttons">cos</button>
+                <button type="button" class="btn btn-primary function_buttons">tan</button>
+                <button type="button" class="btn btn-primary function_buttons">&pi;</button>
+                <button type="button" class="btn btn-primary function_buttons">y^x</button>
+            </div>
+        </div>
+        <div>
+            <div class='row'>
+                <button id='num7' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('7')">7</button>
+                <button id='num8' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('8')">8</button>
+                <button id='num9' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('9')">9</button>
+                <button  type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('(')">(</button>
+                <button  type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc(')')">)</button>
+            </div>
+            <div class='row'>
+                <button id='num4' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('4')">4</button>
+                <button id='num5' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('5')">5</button>
+                <button id='num6' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('6')">6</button>
+                <button id='multiply' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('*')">X</button>
+                <button id='divide' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('/')">/</button>
+            </div>
+            <div class='row'>
+                <button id='num1' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('1')">1</button>
+                <button id='num2' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('2')">2</button>
+                <button id='num3' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('3')">3</button>
+                <button id='sum' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('+')">+</button>
+                <button id= 'subtract' type="button" class="btn btn-dark arithmetic_numbers">-</button>
+            </div>
+            <div class='row'>
+                <button id='num0' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('.')">.</button>
+                <button id ='decimal' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('0')">0</button>
+                <button id-='negative' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('-')">(-)</button>
+                <button id ='answer' type="button" class="btn btn-dark arithmetic_numbers">ANS</button>
+                <button id='equals' type="button" class="btn btn-dark arithmetic_numbers" onclick="calculate()">=</button>
+            </div>
+        </div>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
