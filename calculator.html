@@ -14,18 +14,29 @@
         document.getElementById('screen_text').innerHTML = input;
     }
     function update_calc(num) {
-        curr_input = curr_input.concat(num)
-        updateScreen(curr_input)
+        curr_input = curr_input.concat(num);
+        updateScreen(curr_input);
     }
     function calculate() {
-        answer = eval(curr_input)
-        updateScreen(answer)
-
+        answer = eval(curr_input);
+        updateScreen(answer);
+        curr_input = String(answer);
     }
-
-
-
-
+    function answer_mem() {
+        if (curr_input === '0') {
+            curr_input = '';
+        }
+        curr_input = curr_input.concat(answer);
+        updateScreen(curr_input);
+    }
+    function clear_screen(num_times) {
+        curr_input = '0';
+        updateScreen(curr_input);
+        if (num_times === 1) {
+            answer = '';
+        }
+    }
+    
 </script>
 <style>
      .arithmetic_numbers {
@@ -51,6 +62,7 @@
         margin-left:30%;
         margin-right:auto;
         margin-top: 10%;
+        background-color: rgb(100, 100, 119);
         
     }
     #screen {
@@ -79,7 +91,7 @@
                 <button type="button" class="btn btn-primary function_buttons">Exp</button>
                 <button type="button" class="btn btn-primary function_buttons">a b/c</button>
                 <button type="button" class="btn btn-primary function_buttons">DEL</button>
-                <button type="button" class="btn btn-primary function_buttons">On/C</button>
+                <button type="button" class="btn btn-primary function_buttons" onclick="clear_screen(0)" ondblclick="clear_screen(1)">On/C</button>
             </div>
             <div class='row'>
                 <button type="button" class="btn btn-primary function_buttons">hyp</button>
@@ -116,7 +128,7 @@
                 <button id='num0' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('.')">.</button>
                 <button id ='decimal' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('0')">0</button>
                 <button id-='negative' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('-')">(-)</button>
-                <button id ='answer' type="button" class="btn btn-dark arithmetic_numbers">ANS</button>
+                <button id ='answer' type="button" class="btn btn-dark arithmetic_numbers" onclick="answer_mem()">ANS</button>
                 <button id='equals' type="button" class="btn btn-dark arithmetic_numbers" onclick="calculate()">=</button>
             </div>
         </div>
