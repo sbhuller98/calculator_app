@@ -11,15 +11,28 @@
 
     });
     function updateScreen(input) {
-        document.getElementById('screen_text').innerHTML = input;
+        var new_input = input
+        if (new_input.length > 10) {
+            new_input = input.substring(0,12);
+        }
+        document.getElementById('screen_text').innerHTML = new_input;
     }
     function update_calc(num) {
+        if (curr_input === '0') {
+            curr_input = '';
+        }
         curr_input = curr_input.concat(num);
         updateScreen(curr_input);
     }
     function calculate() {
-        answer = eval(curr_input);
-        updateScreen(answer);
+        try {
+            answer = eval(curr_input);
+        } catch (err) {
+            updateScreen('Err');
+            curr_input = '';
+            return;
+        }
+        updateScreen(String(answer));
         curr_input = String(answer);
     }
     function answer_mem() {
@@ -36,6 +49,24 @@
             answer = '';
         }
     }
+    function negate() {
+        var neg_sign = '(-';
+        curr_input = neg_sign.concat(curr_input);
+        curr_input = curr_input.concat(')');
+        updateScreen(curr_input);
+    }
+    function del() {
+        curr_input = curr_input.slice(0, -1);
+        if (curr_input.length === 0) {
+            curr_input = '0';
+        }
+        updateScreen(curr_input);
+    }
+    function numToExp() {
+        var num = parseInt(curr_input, 10);
+        var exp = String(num.toExponential(4));
+        updateScreen(exp);
+    }
     
 </script>
 <style>
@@ -46,15 +77,17 @@
         position: relative;
         border-width: 4px;
         border-color: black;
+        text-align: center;
+        margin: 4px;
      }   
      
      .function_buttons {
-        width: 65px;
-        height: 40px;
-        margin: 5px;
+        width: 123px;
+        margin: 11px;
+        height: 62px;
+        text-align: center;
         border-width: 2px;
         border-color: black;
-        
      }  
       body
     {
@@ -86,20 +119,9 @@
         </div>
         <div>
             <div class='row'>
-                <button type="button" class="function_buttons btn btn-primary" >2ndF</button>
-                <button type="button" class="btn btn-primary function_buttons">DRG</button>
-                <button type="button" class="btn btn-primary function_buttons">Exp</button>
-                <button type="button" class="btn btn-primary function_buttons">a b/c</button>
-                <button type="button" class="btn btn-primary function_buttons">DEL</button>
+                <button type="button" class="function_buttons btn btn-primary" onclick='numToExp()'>Exp Notation</button>
+                <button type="button" class="btn btn-primary function_buttons" onclick='del()'>DEL</button>
                 <button type="button" class="btn btn-primary function_buttons" onclick="clear_screen(0)" ondblclick="clear_screen(1)">On/C</button>
-            </div>
-            <div class='row'>
-                <button type="button" class="btn btn-primary function_buttons">hyp</button>
-                <button type="button" class="btn btn-primary function_buttons">sin</button>
-                <button type="button" class="btn btn-primary function_buttons">cos</button>
-                <button type="button" class="btn btn-primary function_buttons">tan</button>
-                <button type="button" class="btn btn-primary function_buttons">&pi;</button>
-                <button type="button" class="btn btn-primary function_buttons">y^x</button>
             </div>
         </div>
         <div>
@@ -127,12 +149,11 @@
             <div class='row'>
                 <button id='num0' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('.')">.</button>
                 <button id ='decimal' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('0')">0</button>
-                <button id-='negative' type="button" class="btn btn-dark arithmetic_numbers" onclick="update_calc('-')">(-)</button>
+                <button id-='negative' type="button" class="btn btn-dark arithmetic_numbers" onclick="negate()">(-)</button>
                 <button id ='answer' type="button" class="btn btn-dark arithmetic_numbers" onclick="answer_mem()">ANS</button>
                 <button id='equals' type="button" class="btn btn-dark arithmetic_numbers" onclick="calculate()">=</button>
             </div>
         </div>
-
 </body>
 
 
